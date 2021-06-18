@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Comodo;
+
+
+class ComodoController extends Controller
+{
+    public function add(Request $request){
+        try{
+            $comodo = new Comodo;
+
+            $comodo->descricao = $request->descricao;
+            $comodo->qtd = $request->qtd;
+            $comodo->idImovel = $request->idImovel;
+        
+            $comodo->save();
+
+            return ['status' => 'salvo'];
+        }
+        catch(\Exception $erro){
+            return ['status' => 'erro', 'detalhes' ->$erro];
+        }
+    }
+
+    public function list(){
+        $comodo = new Comodo;
+        
+        return $comodo->all();
+    }
+
+    public function select($id){
+        $comodo = new Comodo;
+        
+        return $comodo->find($id);
+    }
+
+    public function update(Request $request, $id){
+        try{
+            $comodo = new Comodo;
+            $comodo = $comodo->find($id);
+
+
+            $comodo->descricao = $request->descricao;
+            $comodo->qtd = $request->qtd;
+            $comodo->idImovel = $request->idImovel;
+        
+            $comodo->save();
+
+            return ['status' => 'atualizado'];
+        }
+        catch(\Exception $erro){
+            return ['status' => 'erro', 'detalhes' ->$erro];
+        }
+    }
+
+    public function delete($id){
+        try{
+            $comodo = new Comodo;
+            $comodo = $comodo->find($id);
+        
+            $comodo->delete();
+
+            return ['status' => 'excluído'];
+        }
+        catch(\Exception $erro){
+            return ['status' => 'erro', 'detalhes' ->$erro];
+        }
+    }
+}
