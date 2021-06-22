@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FotoController;
 use App\Http\Controllers\ImovelController;
+use App\Http\Controllers\ComodoController;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -34,4 +35,12 @@ route::prefix('imovel')->group(function(){
     route::get('/{id}', [ImovelController::class, 'select']);
     route::put('/{id}', [ImovelController::class, 'update']);
     route::delete('/{id}', [ImovelController::class, 'delete']);
+});
+
+route::prefix('comodo')->group(function(){
+    route::post('/', [ComodoController::class, 'add']);
+    route::get('/', [ComodoController::class, 'list']);
+    route::get('/{id}', [ComodoController::class, 'select']);
+    route::put('/{id}', [ComodoController::class, 'update']);
+    route::delete('/{id}', [ComodoController::class, 'delete']);
 });

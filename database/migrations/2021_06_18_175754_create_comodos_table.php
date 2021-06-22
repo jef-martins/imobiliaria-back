@@ -17,6 +17,7 @@ class CreateComodosTable extends Migration
             $table->id('idComodo');
             $table->string('descricao');
             $table->integer('qtd');
+            $table->bigInteger('idImovel');
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ class CreateImoveisTable extends Migration
             $table->double('preco', 10, 2);
             $table->string('area', 10);
             $table->string('areaConstruida', 10);
+            $table->text('descricao');
             $table->bigInteger('idEstado');
             $table->timestamps();
         });

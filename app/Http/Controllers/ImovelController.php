@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class ImovelController extends Controller
 {
+
     public function add(Request $request){
         try{
             $imovel = new Imovel;
@@ -16,14 +17,15 @@ class ImovelController extends Controller
             $imovel->preco = $request->preco;
             $imovel->area = $request->area;
             $imovel->areaConstruida = $request->areaConstruida;
+            $imovel->descricao = $request->descricao;
             $imovel->idEstado = $request->idEstado;
         
             $imovel->save();
-            
-            return ['status' => 200, 'idImovel' => $imovel->id];
+
+            return ['imovel' => 200, 'idImovel' => $imovel->idImovel];
         }
         catch(\Exception $erro){
-            return ['status' => 'erro', 'detalhes' ->$erro];
+            return ['imovel' => 'erro', 'detalhes' ->$erro];
         }
     }
 
@@ -48,14 +50,15 @@ class ImovelController extends Controller
             $imovel->preco = $request->preco;
             $imovel->area = $request->area;
             $imovel->areaConstruida = $request->areaConstruida;
+            $imovel->descricao = $request->descricao;
             $imovel->idEstado = $request->idEstado;
         
             $imovel->save();
 
-            return ['status' => 'atualizado'];
+            return ['imovel' => 'atualizado', 'idImovel' => $imovel->idImovel];
         }
         catch(\Exception $erro){
-            return ['status' => 'erro', 'detalhes' ->$erro];
+            return ['imovel' => 'erro', 'detalhes' ->$erro];
         }
     }
 
@@ -66,10 +69,10 @@ class ImovelController extends Controller
         
             $imovel->delete();
 
-            return ['status' => 'excluído'];
+            return ['imovel' => 'excluído'];
         }
         catch(\Exception $erro){
-            return ['status' => 'erro', 'detalhes' ->$erro];
+            return ['imovel' => 'erro', 'detalhes' ->$erro];
         }
     }
 }

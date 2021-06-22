@@ -7,19 +7,21 @@ use App\Models\Foto;
 
 class FotoController extends Controller
 {
+
     public function add(Request $request){
         try{
             $foto = new Foto;
 
             $foto->url = $request->url;
+            $foto->capa = $request->capa;
             $foto->idImovel = $request->idImovel;
         
             $foto->save();
 
-            return ['status' => 'salvo'];
+            return ['foto' => 200, 'idFoto' => $foto->idFoto];
         }
         catch(\Exception $erro){
-            return ['status' => 'erro', 'detalhes' ->$erro];
+            return ['foto' => 'erro', 'detalhes' ->$erro];
         }
     }
 
@@ -41,14 +43,15 @@ class FotoController extends Controller
             $foto = $foto->find($id);
 
             $foto->url = $request->url;
+            $foto->capa = $request->capa;
             $foto->idImovel = $request->idImovel;
         
             $foto->save();
 
-            return ['status' => 'atualizado'];
+            return ['foto' => 'atualizado', 'idFoto' => $foto->idFoto];
         }
         catch(\Exception $erro){
-            return ['status' => 'erro', 'detalhes' ->$erro];
+            return ['foto' => 'erro', 'detalhes' ->$erro];
         }
     }
 
@@ -59,10 +62,10 @@ class FotoController extends Controller
         
             $foto->delete();
 
-            return ['status' => 'excluído'];
+            return ['foto' => 'excluído'];
         }
         catch(\Exception $erro){
-            return ['status' => 'erro', 'detalhes' ->$erro];
+            return ['foto' => 'erro', 'detalhes' ->$erro];
         }
     }
 }

@@ -15,7 +15,8 @@ class CreateFotosTable extends Migration
     {
         Schema::create('fotos', function (Blueprint $table) {
             $table->id('idFoto');
-            $table->string('url');
+            $table->longText('url');
+            $table->boolean('capa');
             $table->bigInteger('idImovel');
             $table->timestamps();
         });

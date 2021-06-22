@@ -18,10 +18,10 @@ class ComodoController extends Controller
         
             $comodo->save();
 
-            return ['status' => 'salvo'];
+            return ['comodo' => 200, 'idFoto' => $comodo->idComodo];
         }
         catch(\Exception $erro){
-            return ['status' => 'erro', 'detalhes' ->$erro];
+            return ['comodo' => 'erro', 'detalhes' ->$erro];
         }
     }
 
@@ -42,17 +42,16 @@ class ComodoController extends Controller
             $comodo = new Comodo;
             $comodo = $comodo->find($id);
 
-
             $comodo->descricao = $request->descricao;
             $comodo->qtd = $request->qtd;
             $comodo->idImovel = $request->idImovel;
         
             $comodo->save();
 
-            return ['status' => 'atualizado'];
+            return ['comodo' => 'atualizado', 'idFoto' => $comodo->idComodo];
         }
         catch(\Exception $erro){
-            return ['status' => 'erro', 'detalhes' ->$erro];
+            return ['comodo' => 'erro', 'detalhes' ->$erro];
         }
     }
 
@@ -63,10 +62,10 @@ class ComodoController extends Controller
         
             $comodo->delete();
 
-            return ['status' => 'excluído'];
+            return ['comodo' => 'excluído'];
         }
         catch(\Exception $erro){
-            return ['status' => 'erro', 'detalhes' ->$erro];
+            return ['comodo' => 'erro', 'detalhes' ->$erro];
         }
     }
 }

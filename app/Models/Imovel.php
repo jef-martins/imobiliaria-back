@@ -10,4 +10,5 @@ class Imovel extends Model
     use HasFactory;
 
     protected $table = 'Imoveis';
+    protected $primaryKey = 'idImovel';
 }
