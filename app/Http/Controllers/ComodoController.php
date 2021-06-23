@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comodo;
+use Illuminate\Support\Facades\DB;
 
 
 class ComodoController extends Controller
@@ -32,9 +33,12 @@ class ComodoController extends Controller
     }
 
     public function select($id){
-        $comodo = new Comodo;
-        
-        return $comodo->find($id);
+
+        $comodo = DB::table('comodos')
+            ->where('idImovel', $id)
+            ->orderBy('descricao', 'desc')
+            ->get();
+        return $comodo;
     }
 
     public function update(Request $request, $id){

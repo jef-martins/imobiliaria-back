@@ -18,7 +18,7 @@ class FotoController extends Controller
         
             $foto->save();
 
-            return ['foto' => 200, 'idFoto' => $foto->idFoto];
+            return ['status' => 200, 'idFoto' => $foto->idFoto];
         }
         catch(\Exception $erro){
             return ['foto' => 'erro', 'detalhes' ->$erro];

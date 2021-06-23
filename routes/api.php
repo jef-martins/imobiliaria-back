@@ -31,7 +31,7 @@ route::prefix('foto')->group(function(){
 
 route::prefix('imovel')->group(function(){
     route::post('/', [ImovelController::class, 'add']);
-    route::get('/', [ImovelController::class, 'list']);
+    route::get('/ordem/{sort}', [ImovelController::class, 'list']);
     route::get('/{id}', [ImovelController::class, 'select']);
     route::put('/{id}', [ImovelController::class, 'update']);
     route::delete('/{id}', [ImovelController::class, 'delete']);

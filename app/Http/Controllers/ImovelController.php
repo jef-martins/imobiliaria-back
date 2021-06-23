@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class ImovelController extends Controller
 {
-
     public function add(Request $request){
         try{
             $imovel = new Imovel;
@@ -18,6 +17,8 @@ class ImovelController extends Controller
             $imovel->area = $request->area;
             $imovel->areaConstruida = $request->areaConstruida;
             $imovel->descricao = $request->descricao;
+            $imovel->tipoImovel = $request->tipoImovel;
+            $imovel->negocio = $request->negocio;
             $imovel->idEstado = $request->idEstado;
         
             $imovel->save();
@@ -29,10 +30,27 @@ class ImovelController extends Controller
         }
     }
 
-    public function list(){
-        $imovel = new Imovel;
+    public function list($sort){
+       switch($sort){
+            case 'menor_preco':
+                $tabela = 'preco';
+                $ordem = 'asc';
+                break;
+            case 'maior_preco':
+                $tabela = 'preco';
+                $ordem = 'desc';
+                break;
+       }
+        $dados = DB::table('imoveis')
+            ->join('fotos', 'imoveis.idImovel', '=', 'fotos.idImovel')
+            ->select('imoveis.*', 'fotos.url')
+            ->where('fotos.capa', 1)
+            
+            ->orderBy($tabela, $ordem)
+            
+            ->get();
         
-        return $imovel->all();
+        return $dados;  
     }
 
     public function select($id){

@@ -20,6 +20,8 @@ class CreateImoveisTable extends Migration
             $table->string('area', 10);
             $table->string('areaConstruida', 10);
             $table->text('descricao');
+            $table->string('tipoImovel', 100);
+            $table->string('negocio', 100);
             $table->bigInteger('idEstado');
             $table->timestamps();
         });
